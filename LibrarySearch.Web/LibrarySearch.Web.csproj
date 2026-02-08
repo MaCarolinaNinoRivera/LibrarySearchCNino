@@ -1,0 +1,16 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>45990bcd-1504-4a8e-a572-d77752b01ed6</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\LibrarySearch.Application\LibrarySearch.Application.csproj" />
+    <ProjectReference Include="..\LibrarySearch.Domain\LibrarySearch.Domain.csproj" />
+    <ProjectReference Include="..\LibrarySearch.Infrastructure\LibrarySearch.Infrastructure.csproj" />
+  </ItemGroup>
+
+</Project>
