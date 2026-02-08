@@ -70,20 +70,25 @@ public class GeminiAiExtractionService : IAiExtractionService
 
     private static string BuildPrompt(string rawQuery)
     {
-        return """
+        return $"""
         You are a backend assistant specialized in structured data extraction.
-        Do NOT invent data. Prefer null over guessing.
-        Return valid JSON only.
+        The user might provide multiple books or messy text. Your goal is to identify the SINGLE MOST PROBABLE book the user is looking for.
 
-        Extract book search fields from the following query:
+        STRICT RULES:
+        1. Return ONLY ONE JSON object. 
+        2. Do NOT return an array [].
+        3. If multiple books are found (e.g., 'Twilight' and 'The Hobbit'), choose only the one that appears most complete or relevant.
+        4. Do NOT include any conversational text or markdown blocks like ```json.
+
+        Extract the fields from this query: 
         """ + rawQuery + """
 
-        JSON schema:
+        JSON Schema:
         {
-          "title": string | null,
-          "author": string | null,
-          "keywords": string[],
-          "reasoning": string
+            "title": "string or null",
+            "author": "string or null",
+            "keywords": ["string"],
+            "reasoning": "Briefly explain why this book was chosen as the most probable match"
         }
         """;
     }
